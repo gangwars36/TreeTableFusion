@@ -1,0 +1,47 @@
+<div class="tree-container">
+    <table class="tree-table">
+        <thead>
+            <tr>
+                <!-- <th></th> -->
+                <th *ngFor="let key of columnKeys">{{ columnHeaders[key] || key }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let group of treeData">
+                <!-- Level 1 Header -->
+                <tr class="level1" (click)="toggleLevel1(group)" style="cursor: pointer;">
+                    <td>
+                        <mat-icon>{{ group.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    </td>
+                    <td colspan="10"><strong>{{ group.level1 }}</strong></td>
+                </tr>
+
+                <!-- Level 2 Section -->
+                <ng-container *ngIf="group.expanded">
+                    <ng-container *ngFor="let subgroup of group.children">
+                        <!-- Level 2 Header -->
+                        <tr class="level2" (click)="toggleLevel2(subgroup, $event)" style="cursor: pointer;">
+                            <td>
+                                <mat-icon>{{ subgroup.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+                            </td>
+                            <td colspan="6"><strong>{{ subgroup.level2 }}</strong></td>
+                            <td><strong>{{ getLevel2Sum(subgroup) | number:'1.2-5' }}</strong></td>
+                            <!-- This shows sum in Row1Col8 -->
+                            <td colspan="3"></td>
+                        </tr>
+
+
+                        <!-- Data Rows -->
+                        <ng-container *ngIf="subgroup.expanded">
+                            <tr class="record-row" *ngFor="let row of subgroup.rows">
+                                <!-- <td></td> -->
+                                <td *ngFor="let key of columnKeys">{{ getCellValue(row, key) }}</td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<app-footer></app-footer>

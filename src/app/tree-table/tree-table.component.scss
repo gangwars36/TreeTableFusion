@@ -1,0 +1,51 @@
+.tree-container {
+  padding: 0rem;
+  overflow-x: auto;
+}
+
+.tree-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+
+  thead {
+    background: #f1f1f1;
+    color: dimgrey;
+    th {
+      padding: 8px 30px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .level1 {
+      background-color: #165BAA;
+      color: white;
+      font-weight: bold;
+    }
+
+    .level2 {
+      background-color: #246bbc;
+      font-weight: bold;
+      color: white;
+    //   &:hover {
+    //     background-color: #165BAA;
+    //   }
+    }
+
+    .record-row {
+      background-color: #fafafa;
+    }
+
+    mat-icon {
+      vertical-align: middle;
+    }
+  }
+}
